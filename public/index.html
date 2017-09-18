@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" type="text/css" href="styles/styleUtil.css" />
+<script src="js/jquery-3.2.1.min.js"></script>
+<script language="javascript" src="js/scanUtil.js"></script>
+<title>iPot Scan Utility</title>
+</head>
+<body>
+<form>
+<h1>Scan settings</h1>
+<h2>General</h2>
+<p><label for="scanSpeed" id="scanSpeedLbl">Platform rotation speed (in ms)</label>
+<input type="number" id="scanSpeed" value="1000"/></p>
+<label for="laserLinesChkBox">Laser lines</label>
+<input type="checkbox" id="laserLinesChkBox" checked="checked"/>
+<label for="previewChkBox">Draw result</label>
+<input type="checkbox" id="previewChkBox" checked="checked"/>
+<h2>Sensor array</h2>
+<label for="useSensor1">Sensor 1</label>
+<input type="checkbox" id="useSensor1" checked="checked"/>
+<label for="useSensor2">Sensor 2</label>
+<input type="checkbox" id="useSensor2" checked="checked"/>
+<label for="useSensor3">Sensor 3</label>
+<input type="checkbox" id="useSensor3" checked="checked"/>
+<h2>Processing</h2>
+<label for="layout">Layout</label>
+<input type="checkbox" id="layout" checked="checked"/>
+<select id="layoutType">
+<option id="A4" selected="selected">A4</option>
+<option id="A3">A3</option>
+<option id="LS">Letter size</option>
+</select>
+<label for="autoFit" id="autoFitLbl">Autofit</label>
+<input type="checkbox" id="autoFit" checked="checked"/>
+<p><label for="downloadLayout" id="downloadLayoutLbl">Download page instead of individual drawings</label>
+<input type="checkbox" id="downloadLayout" checked="checked"/></p>
+<p><label for="DPI" id="DPILbl">DPI</label>
+<input type="number" id="DPI" value="600" /></p>
+<select id="fileType">
+<option id="PDF" selected="selected">PDF</option>
+<option id="JPG">JPG</option>
+<option id="TIF">TIF</option>
+</select>
+<h2>Scan</h2>
+<button id="reset">Reset</button><button id="scan">Scan</button><button id="downloadBtn">Download</button>
+<p><label for="cpuBattLife" id="cpuBattLifeLbl">CPU battery life:</label>
+<label id="cpuBattLife"/>100%</label></p>
+<p><label for="senBattLife" id="senBattLifeLbl">Peripherals battery life:</label>
+<label id="senBattLife"/>100%</label></p>
+</form>
+</body>
+</html>
