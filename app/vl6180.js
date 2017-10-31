@@ -106,28 +106,33 @@ return new Promise(function(resolve, reject) {
   buffer[0] = (reg >> 8) & 0xFF;
   buffer[1] = reg & 0xFF;
   time = Date.now();
-  logger.writeLog(time, "FN: READREG" + " " + buffer[0] + "/" + buffer[1]).catch(function(e) {console.log("error in vl6180 readReg:i2cRead"); reject(e)});;
-  i2c1.i2cWrite(sensor, 2, buffer, function(err, bytesWritten, buffer) {
-    if (err) {  // wHY ERROR?
-      reject(err);
-      console.log(err);
-    } else {
-        console.log(buffer[0]);
+  logger.writeLog(time, "FN: READREG" + " " + buffer[0] + "/" + buffer[1])
+      .then(function({
+      i2c1.i2cWrite(sensor, 2, buffer, function(err, bytesWritten, buffer) {
+        if (err) {  // wHY ERROR?
+          reject(err);
+//          console.log(err);
+        } else {
+//            console.log(buffer[0]);
             time = Date.now();
-            logger.writeLog(time, "FN: READREG" + buffer[0]).catch(function(e) {console.log("error in vl6180 readReg:i2cRead"); reject(e)});
-            i2c1.i2cRead(sensor, 1, dataRead, function(err, bytesRead, buffer) {
-                  if (err) {
-                    reject(err);
-//                    console.log(err);
-                  } else {
-                    return dataRead[0];
-                    resolve(dataRead[0]);
-                  }
-                })
+            logger.writeLog(time, "FN: READREG" + buffer[0])
+            .then(function(){
+              i2c1.i2cRead(sensor, 1, dataRead, function(err, bytesRead, buffer) {
+                      if (err) {
+                        reject(err);
+    //                    console.log(err);
+                      } else {
+    //                    return dataRead[0];
+                        resolve(dataRead[0]);
+                      }
+                    })
+            })
+            .catch(function(e) {console.log("error in vl6180 readReg:i2cRead"); reject(e)});
 
-        }
-    })
-  })
+            }
+        })
+      }))
+    .catch(function(e) {console.log("error in vl6180 readReg:i2cWrite"); reject(e)});;
 }
 
 function read(vl6180){
